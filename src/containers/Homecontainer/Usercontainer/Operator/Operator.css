@@ -1,0 +1,18 @@
+.Usercard {
+    height: 490px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 450px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+.Operator_create_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 160px;
+}
+.margintop_minus{
+    margin-top: -10%;
+}
+.whitenotify{
+    color:white;
+}

@@ -10,7 +10,7 @@ export class UserList extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div className="container-fluid">
           <div className="bg-light border-right" id="sidebar-wrapper">
             <div className="list-group list-group-flush">
               <Link
@@ -32,45 +32,15 @@ export class UserList extends Component {
                 View Operators
               </Link>
             </div>
-            {/* <div className="list-group list-group-flush">
-              <ul>
-                <li>
-                  <span id="Red"> Red </span>
-                  <button
-                    className="btn btn-sm m-2"
-                    style={{
-                      backgroundColor: "Red"
-                    }}
-                  >
-                    Pending
-                  </button>
-                </li>
-                <li>
-                  <span id="Green"> Green </span>
-                  <button
-                    className="btn btn-sm m-2"
-                    style={{
-                      backgroundColor: "rgba(0, 0, 0, 0.5) !important"
-                    }}
-                  >
-                    Pending
-                  </button>
-                </li>
-                <li>
-                  <span id="Gray"> Gray </span>
-                  <button
-                    className="btn btn-sm m-2"
-                    style={{
-                      backgroundColor: "Gray"
-                    }}
-                  >
-                    InActivated
-                  </button>
-                </li>
-              </ul>
-            </div> */}
           </div>
-          <div className="margintop_minus">
+          <div
+            className="margintop_minus"
+            style={
+              sessionStorage.getItem("Role") === "2"
+                ? { marginTop: "-3%" }
+                : { marginTop: "-5%" }
+            }
+          >
             <Switch>
               <Route
                 path="/homepage/userlist/viewusers"

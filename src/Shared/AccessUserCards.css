@@ -1,13 +1,11 @@
 /* FontAwesome for working BootSnippet :> */
 
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-/* #team {
-  background: #eee !important;
-} */
+
 .Accesscontainer {
-  overflow-y: scroll;
-  height: 100vh;
-  width: 890px;
+  overflow-y: auto;
+  height: 80%;
+  width: 80%;
   scroll-behavior: smooth;
   position: absolute;
   box-sizing: content-box;
@@ -31,10 +29,6 @@
   background-color: #007b5e;
   border-color: #007b5e;
 }
-
-/* section {
-  padding: 60px 0;
-} */
 
 section .section-title {
   text-align: center;

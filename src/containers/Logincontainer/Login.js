@@ -6,6 +6,7 @@ import { faKey } from "@fortawesome/free-solid-svg-icons";
 import LoginService from "./../../Services/LoginService";
 import Notification from "./../../Shared/Notifications";
 import "./Login.css";
+import { error } from "util";
 
 export class Login extends Component {
   constructor(props) {
@@ -39,25 +40,35 @@ export class Login extends Component {
       this.setState({ statusMessage: false });
     } else {
       var serv = new LoginService();
-      serv.AuthUser(this.state.UserName, this.state.PassWord).then(result => {
-        if (result.data.statusCode === 200) {
-          sessionStorage.setItem("Token", result.data.token);
-          sessionStorage.setItem("Authenticated", result.data.authenticated);
-          sessionStorage.setItem("Role", result.data.roleId);
-          sessionStorage.setItem("LoggedInUser", result.data.UserName);
-          this.setState({ statusMessage: true });
-          this.setState({ LoginStatusMessage: result.data.status });
-          var h = this.props.history;
-          h.push("/homepage");
-        } else {
-          this.setState({ statusMessage: true });
-          this.setState({
-            LoginStatusMessage: "Username and/or Password is incorrect..!"
-          });
-          this.setState({ UserName: "" });
-          this.setState({ PassWord: "" });
-        }
-      });
+      serv
+        .AuthUser(this.state.UserName, this.state.PassWord)
+        .then(result => {
+          if (result.data.statusCode === 200) {
+            sessionStorage.setItem("Token", result.data.token);
+            sessionStorage.setItem("Authenticated", result.data.authenticated);
+            sessionStorage.setItem("Role", result.data.roleId);
+            sessionStorage.setItem("LoggedInUser", result.data.UserName);
+            this.setState({ statusMessage: true });
+            this.setState({ LoginStatusMessage: result.data.status });
+            var h = this.props.history;
+            h.push("/homepage");
+          } else {
+            this.setState({ statusMessage: true });
+            this.setState({
+              LoginStatusMessage: "Username and/or Password is incorrect..!"
+            });
+            this.setState({ UserName: "" });
+            this.setState({ PassWord: "" });
+          }
+        })
+        .catch(error => {
+          if (error.message === "Network Error") {
+            this.setState({ statusMessage: true });
+            this.setState({
+              LoginStatusMessage: "Please check your internet connection"
+            });
+          }
+        });
     }
   }
   render() {

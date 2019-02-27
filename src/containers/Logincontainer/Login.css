@@ -54,9 +54,11 @@ body {
 #nav {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
-#nav .navbar-brand,
-#nav .nav-link {
+#nav .navbar-brand {
   color: white;
+}
+#nav .nav-link {
+  color: #000;
 }
 .input-group-prepend span {
   width: 50px;

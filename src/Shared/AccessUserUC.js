@@ -181,44 +181,111 @@ export class AccessUserUC extends Component {
         EducationStatus: this.state.Education, // e.g. Masters, Phd, Graduate, Under-Graduate, HSC, SSC, Illiterate, etc.
         BirthSign: this.state.BirthSign
       };
-      console.log(this.props.AccessUserdata);
       if (
         this.props.AccessUserdata === null ||
         this.props.AccessUserdata === undefined
       ) {
         //console.log("In Create");
-        serv.CreateAccessUser(accessUser).then(result => {
-          if (result.data.statusCode === 200) {
-            this.setState({ statusMessage: true });
-            this.setState({ ErrorMessage: " " });
-            this.setState({
-              UserCreationStatusMessage: result.data.statusMessage
-            });
-            this.setState({ FullName: "" });
-            this.setState({ Address: "" });
-            this.setState({ FirstName: "" });
-            this.setState({ MiddleName: "" });
-            this.setState({ LastName: "" });
-            this.setState({ GenderIs: "" });
-            this.setState({ DateOfBirth: "" });
-            this.setState({ Age: "" });
-            this.setState({ FlatOrBungalowNumber: "" });
-            this.setState({ SocietyName: "" });
-            this.setState({ StreetName: "" });
-            this.setState({ City: "" });
-            this.setState({ State: "" });
-            this.setState({ PinCode: "" });
-            this.setState({ PhoneNo: "" });
-            this.setState({ MobileNo: "" });
-            this.setState({ IsPhysicalDisability: "" });
-            this.setState({ Married: "" });
-            this.setState({ Education: "" });
-            this.setState({ BirthSign: "" });
+        //var serv = new UserService();
+        //var index;
+        //var AccessUserRoleID;
+        serv.GetLastInsertedUserId().then(result => {
+          if (result.data) {
+            if (result.data.data) {
+              //console.log(result);
+              var index = result.data.data.length - 1;
+              var id = result.data.data[index]["UserID"];
+              id = id + 1;
+              //AccessUserRoleID = id;
+              //console.log(AccessUserRoleID);
+            } else {
+              index = 0;
+              id = 100;
+            }
           } else {
-            this.setState({ statusMessage: true });
-            this.setState({ UserCreationStatusMessage: result.data.error });
+            index = 0;
+            id = 100;
           }
+          accessUser.UserId = id;
+          serv.CreateAccessUser(accessUser).then(result => {
+            if (result.data.statusCode === 200) {
+              this.setState({ statusMessage: true });
+              this.setState({ ErrorMessage: " " });
+              this.setState({
+                UserCreationStatusMessage: result.data.statusMessage
+              });
+              if (sessionStorage.getItem("Role") === "1") {
+                this.setState({
+                  PersonalUniqueueID: this.getRandomPersonalUniqueId()
+                });
+              } else {
+                this.setState({
+                  PersonalUniqueueID: -1
+                });
+              }
+              this.setState({ FullName: "" });
+              this.setState({ Address: "" });
+              this.setState({ FirstName: "" });
+              this.setState({ MiddleName: "" });
+              this.setState({ LastName: "" });
+              this.setState({ GenderIs: "" });
+              this.setState({ DateOfBirth: "" });
+              this.setState({ Age: "" });
+              this.setState({ FlatOrBungalowNumber: "" });
+              this.setState({ SocietyName: "" });
+              this.setState({ StreetName: "" });
+              this.setState({ City: "" });
+              this.setState({ State: "" });
+              this.setState({ PinCode: "" });
+              this.setState({ PhoneNo: "" });
+              this.setState({ MobileNo: "" });
+              this.setState({ IsPhysicalDisability: "" });
+              this.setState({ Married: "" });
+              this.setState({ Education: "" });
+              this.setState({ BirthSign: "" });
+            } else {
+              this.setState({ statusMessage: true });
+              this.setState({
+                UserCreationStatusMessage: result.data.error
+              });
+            }
+          });
         });
+        //console.log(AccessUserRoleID);
+        // accessUser.UserId = id;
+        // console.log(accessUser);
+        // serv.CreateAccessUser(accessUser).then(result => {
+        //   if (result.data.statusCode === 200) {
+        //     this.setState({ statusMessage: true });
+        //     this.setState({ ErrorMessage: " " });
+        //     this.setState({
+        //       UserCreationStatusMessage: result.data.statusMessage
+        //     });
+        //     this.setState({ FullName: "" });
+        //     this.setState({ Address: "" });
+        //     this.setState({ FirstName: "" });
+        //     this.setState({ MiddleName: "" });
+        //     this.setState({ LastName: "" });
+        //     this.setState({ GenderIs: "" });
+        //     this.setState({ DateOfBirth: "" });
+        //     this.setState({ Age: "" });
+        //     this.setState({ FlatOrBungalowNumber: "" });
+        //     this.setState({ SocietyName: "" });
+        //     this.setState({ StreetName: "" });
+        //     this.setState({ City: "" });
+        //     this.setState({ State: "" });
+        //     this.setState({ PinCode: "" });
+        //     this.setState({ PhoneNo: "" });
+        //     this.setState({ MobileNo: "" });
+        //     this.setState({ IsPhysicalDisability: "" });
+        //     this.setState({ Married: "" });
+        //     this.setState({ Education: "" });
+        //     this.setState({ BirthSign: "" });
+        //   } else {
+        //     this.setState({ statusMessage: true });
+        //     this.setState({ UserCreationStatusMessage: result.data.error });
+        //   }
+        //});
       } else {
         //if (sessionStorage.getItem("Role") === "2") {
         accessUser._id = this.state.recordId;
@@ -233,9 +300,10 @@ export class AccessUserUC extends Component {
               UserCreationStatusMessage: result.data.statusMessage
             });
           } else {
+            //console.log(result);
             this.setState({ statusMessage: true });
             this.setState({
-              UserCreationStatusMessage: result.data.error.message
+              UserCreationStatusMessage: result.data.error
             });
           }
         });
@@ -248,6 +316,7 @@ export class AccessUserUC extends Component {
   }
   OnPropertyChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    this.setState({ UserCreationStatusMessage: "" });
   }
   render() {
     return (

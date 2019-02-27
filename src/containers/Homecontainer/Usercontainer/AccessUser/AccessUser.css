@@ -1,23 +1,23 @@
 .Usercard {
-    height: 490px;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 700px;
-    background-color: rgba(0,0,0,0.5) !important;
+  height: 490px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 700px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
-.extended{
-   overflow-y: auto;
-   height: 350px; 
+.extended {
+  overflow-y: auto;
+  height: 350px;
 }
-.user_create_btn{
-    color: black;
-    background-color: #FFC312;
-    width: 120px;
+.user_create_btn {
+  color: black;
+  background-color: #ffc312;
+  width: 120px;
 }
-.margintop_minus{
-    margin-top: -10%;
-    margin-left: 25%;
+.margintop_minus {
+  margin-top: -10%;
+  margin-left: 15%;
 }
-.whitenotify{
-    color:white;
+.whitenotify {
+  color: white;
 }

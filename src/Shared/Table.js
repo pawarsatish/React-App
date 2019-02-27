@@ -24,8 +24,8 @@ export class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.OperatorData != null ||
-          this.props.OperatorData.length != 0 ? (
+          {this.props.OperatorData !== null ||
+          this.props.OperatorData.length !== 0 ? (
             this.props.OperatorData.map((obj, idx) => (
               <TableRow key={idx} data={obj} EditClick={this.EditOperator} />
             ))

@@ -29,7 +29,7 @@ export class AccessUserCardFragment extends Component {
                   style={
                     this.props.data.PersonalUniqueueID === "-1"
                       ? { backgroundColor: "gray" }
-                      : this.props.data.PersonalUniqueueID != "-1" &&
+                      : this.props.data.PersonalUniqueueID !== "-1" &&
                         this.props.data.ApproveStatus
                       ? { backgroundColor: "Purple" }
                       : null
@@ -107,10 +107,10 @@ export class AccessUserCardFragment extends Component {
                       Activate <FontAwesomeIcon icon={faCheck} />
                     </span>
                   ) : null}
-                  {this.props.data.PersonalUniqueueID != "-1" &&
+                  {this.props.data.PersonalUniqueueID !== "-1" &&
                   this.props.data.ApproveStatus &&
                   sessionStorage.getItem("Role") === "2" ? null : this.props
-                      .data.PersonalUniqueueID != "-1" &&
+                      .data.PersonalUniqueueID !== "-1" &&
                     this.props.data.ApproveStatus &&
                     sessionStorage.getItem("Role") === "1" ? (
                     <span

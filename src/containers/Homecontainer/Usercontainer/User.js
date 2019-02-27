@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Operator from "./Operator/Operator";
 import AccessUser from "./AccessUser/AccessUser";
 import SearchOperator from "./../Search/SearchOperator/SearchOperator";
+
 import "./User.css";
 
 export class User extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div className="container-fluid">
           <div className="bg-light border-right" id="sidebar-wrapper">
             <div className="list-group list-group-flush">
               <Link
@@ -37,8 +38,8 @@ export class User extends Component {
             className="margintop_minus"
             style={
               sessionStorage.getItem("Role") === "2"
-                ? { marginTop: "-5%" }
-                : { marginTop: "-10%" }
+                ? { marginTop: "-3%" }
+                : { marginTop: "-5%" }
             }
           >
             <Switch>

@@ -24,7 +24,7 @@ class UserService {
     return resp;
   }
   CreateAccessUser(accessUser) {
-    console.log("In Crate Access User Serivce");
+    //console.log("In Crate Access User Serivce");
     var headers = {
       "Content-Type": "application/json",
       Authorization: "bearer " + sessionStorage.getItem("Token"),
@@ -94,6 +94,7 @@ class UserService {
     return resp;
   }
   ActivateAccessUser(accessUser) {
+    console.log("In Activate");
     var headers = {
       "Content-Type": "application/json",
       Authorization: "bearer " + sessionStorage.getItem("Token"),
@@ -132,14 +133,28 @@ class UserService {
     });
     return resp;
   }
-  SearchAccessUser(UserCriteria) {
+  SearchAccessUser(Criteria, SearchKey, SearchValue) {
     var headers = {
       "Content-Type": "application/json",
       Authorization: "bearer " + sessionStorage.getItem("Token"),
       Role: sessionStorage.getItem("Role"),
-      Criteria: UserCriteria
+      criteria: Criteria,
+      searchKey: SearchKey,
+      searchValue: SearchValue
     };
     var resp = axios.get("http://localhost:4090/api/searchaccessuser", {
+      headers: headers
+    });
+    return resp;
+  }
+  GetUserProfileInfo() {
+    var headers = {
+      "Content-Type": "application/json",
+      Authorization: "bearer " + sessionStorage.getItem("Token"),
+      Role: sessionStorage.getItem("Role"),
+      UserName: sessionStorage.getItem("LoggedInUser")
+    };
+    var resp = axios.get("http://localhost:4090/api/getnormaluserdetails", {
       headers: headers
     });
     return resp;

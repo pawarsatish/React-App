@@ -29,7 +29,11 @@ export class OperatorList extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   searchOperatorByCriteria(e) {
-    this.getusers(this.state.MobileNo);
+    if (this.state.MobileNo !== "") {
+      this.getusers(this.state.MobileNo);
+    } else {
+      this.getusers();
+    }
   }
   getusers(params) {
     //console.log("In Search LIst");

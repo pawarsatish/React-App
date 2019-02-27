@@ -1,3 +1,6 @@
+Admin And Operator Part is done.
+Now Access User Login Part is left in which he/she can only View his/her profile, But in case Operator made some changes in his/her profile and his/her profile is waiting to be approved from admin then he/she will get one notification message like "Your profile has some changes which needs to be approved from Admin after then you will be able to view your profile."
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
